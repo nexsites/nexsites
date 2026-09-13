@@ -1,0 +1,45 @@
+name: Contribution snake
+
+on:
+  schedule:
+    - cron: "23 4 * * *"   # daily, 04:23 UTC
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - scripts/snake.py
+      - .github/workflows/snake.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contribution-snake
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate snake SVGs
+        # The public HTML endpoint honours the "include private contributions" profile
+        # setting. To use the GraphQL API instead, add a PAT as a repository secret
+        # (e.g. SNAKE_TOKEN) and append: --token ${{ secrets.SNAKE_TOKEN }}
+        run: python scripts/snake.py --user ${{ github.repository_owner }} --out dist
+
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+          commit_message: "chore: update contribution snake"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
