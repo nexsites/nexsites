@@ -53,10 +53,6 @@ I'm looking for a role in AI engineering, AI automation, agent tooling, or solut
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=nexsites&hide_border=true&bg_color=0d1117&color=8b949e&line=e2a23a&point=ede8db&area=true&area_color=e2a23a&hide_title=true" alt="Contribution activity" width="100%">
-</p>
-
-<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nexsites/nexsites/output/snake-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nexsites/nexsites/output/snake-light.svg">
